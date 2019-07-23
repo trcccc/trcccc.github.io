@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[hexo解决不蒜子统计功能无法显示的问题]]></title>
+    <url>%2F2019%2F07%2F23%2F%E4%B8%BA%E5%8D%9A%E5%AE%A2%E5%A2%9E%E5%8A%A0%E4%B8%8D%E8%92%9C%E5%AD%90%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD%2F</url>
+    <content type="text"><![CDATA[使用主题：next 在启用next主题自带不蒜子功能后，显示不了数字 解决办法 首先找到文件路径为/theme/next/layout/_third-party/analytics/busuanzi-counter.swig的文件。 将 图中选定部分替换为https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js即可 本地查看数字会过大，上传后就会正常 参考文章：https://www.jianshu.com/p/fd3accaa2ae0]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>不蒜子统计</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hexo gitment评论配置]]></title>
     <url>%2F2019%2F07%2F17%2F%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0%2F</url>
     <content type="text"><![CDATA[gitment评论系统接入hexo 使用主题：next 注册 OAuth Applicationhttps://github.com/settings/applications/new 12345application name: GitmentHomepage URL: 你的博客网址AuThorization callback Url：你的博客网址 点击 register application 会得到一个 client ID 和一个 client secret，这个将被用于之后的用户登录 建立一个储存评论的GitHub仓库命名为 gitment-comments 修改主题配置文件中gitmentenable： true github_user: 你的GitHub名称 github_repo: 仓库名称 client_id: 第一步里的id client_secret: 第一步里的secret 按理来说进行到这一步hexo g再 hexo s就可以用了 但是我配置完成后出现了erro的问题 报错object ProgressEvent解决方法打开目录blog\themes\next\layout_third-party\comments下的gitment.swig 将 12&lt;link rel=&quot;stylesheet&quot; href=&quot;https://billts.site/extra_css/gitment.css&quot;&gt; &lt;script src=&quot;https://billts.site/js/gitment.js&quot;&gt;&lt;/script&gt; 更换 12&lt;link rel=&quot;stylesheet&quot; href=&quot;https://imsun.github.io/gitment/style/default.css&quot;&gt;&lt;script src=&quot;https://imsun.github.io/gitment/dist/gitment.browser.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; 报错validation failed解决方法将gitment.swig中的id改为 1id: &apos;&lt;%= page.date %&gt;&apos; hexo d后等一会就可以使用了]]></content>
