@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Python 的继承与组合]]></title>
+    <url>%2F2019%2F07%2F27%2FPython-%E7%9A%84%E7%BB%A7%E6%89%BF%E4%B8%8E%E7%BB%84%E5%90%88%2F</url>
+    <content type="text"><![CDATA[python的继承普通继承举例： 1class parent: def hello(self): print(&quot;调用父类&quot;)class child(parent): passc=child()c.hello() 多重继承1class base1: def foo1(self): print(&quot;base1&quot;)class base2: def foo2(self): print(&quot;base2&quot;)class c(base1,base2): passc1=c()c1.foo1()c1.foo2() 组合把类和实例化放到新类 1class Turtle: def __init__(self,x): self.num = xclass Fish: def __init__(self,x): self.num = xclass pool: def __init__(self,x,y): self.turtle = Turtle(x) self.fish = Fish(y) def print_num(self): print(&quot;乌龟%d 鱼%d&quot;%(self.turtle.num,self.fish.num))pool1=pool(1,10)pool1.print_num()]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>继承，组合</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hexo解决不蒜子统计功能无法显示的问题]]></title>
     <url>%2F2019%2F07%2F23%2F%E4%B8%BA%E5%8D%9A%E5%AE%A2%E5%A2%9E%E5%8A%A0%E4%B8%8D%E8%92%9C%E5%AD%90%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD%2F</url>
     <content type="text"><![CDATA[使用主题：next 在启用next主题自带不蒜子功能后，显示不了数字 解决办法 首先找到文件路径为/theme/next/layout/_third-party/analytics/busuanzi-counter.swig的文件。 将 图中选定部分替换为https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js即可 本地查看数字会过大，上传后就会正常 参考文章：https://www.jianshu.com/p/fd3accaa2ae0]]></content>
