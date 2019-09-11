@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[c# 读写文件时文件正由另一进程使用]]></title>
+    <url>%2F2019%2F09%2F11%2Fc-%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6%E6%97%B6%E6%96%87%E4%BB%B6%E6%AD%A3%E7%94%B1%E5%8F%A6%E4%B8%80%E8%BF%9B%E7%A8%8B%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[更改之前：12345678Sw = new StreamWriter(&quot;d:\\output.txt&quot;);FileStream fs = new FileStream(&quot;d:\\output.txt&quot;, FileMode.Open）fs.Position = fs.Length;//连续向文件写入数据零流 while ((str = inpipe.Read()) != null) &#123; Sw.Write(str+&quot;\n&quot;); &#125; Sw.Close(); 报错文件正由另一进程使用。 修改为：12345678Sw = new StreamWriter(&quot;d:\\output.txt&quot;); FileStream fs = new FileStream(&quot;d:\\output.txt&quot;, FileMode.Open, FileAccess.Read, FileShare.ReadWrite); fs.Position = fs.Length; while ((str = inpipe.Read()) != null) &#123; Sw.Write(str+&quot;\n&quot;); &#125; Sw.Close(); 解决 参考：https://blog.csdn.net/superhoy/article/details/7931234]]></content>
+      <categories>
+        <category>文件</category>
+      </categories>
+      <tags>
+        <tag>c#</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Python 的继承与组合]]></title>
     <url>%2F2019%2F07%2F27%2FPython-%E7%9A%84%E7%BB%A7%E6%89%BF%E4%B8%8E%E7%BB%84%E5%90%88%2F</url>
     <content type="text"><![CDATA[python的继承普通继承举例： 1class parent: def hello(self): print(&quot;调用父类&quot;)class child(parent): passc=child()c.hello() 多重继承1class base1: def foo1(self): print(&quot;base1&quot;)class base2: def foo2(self): print(&quot;base2&quot;)class c(base1,base2): passc1=c()c1.foo1()c1.foo2() 组合把类和实例化放到新类 1class Turtle: def __init__(self,x): self.num = xclass Fish: def __init__(self,x): self.num = xclass pool: def __init__(self,x,y): self.turtle = Turtle(x) self.fish = Fish(y) def print_num(self): print(&quot;乌龟%d 鱼%d&quot;%(self.turtle.num,self.fish.num))pool1=pool(1,10)pool1.print_num()]]></content>
