@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[c# 设置图片透明度]]></title>
+    <url>%2F2019%2F10%2F27%2Fc-%E8%AE%BE%E7%BD%AE%E5%9B%BE%E7%89%87%E9%80%8F%E6%98%8E%E5%BA%A6%2F</url>
+    <content type="text"><![CDATA[图片透明度1234567891011121314151617181920private Bitmap SetPictureAlpha(Image image, int alpha) &#123; //颜色矩阵 float[][] matrixItems = &#123; new float[]&#123;1,0,0,0,0&#125;, new float[]&#123;0,1,0,0,0&#125;, new float[]&#123;0,0,1,0,0&#125;, new float[]&#123;0,0,0,alpha/255f,0&#125;, new float[]&#123;0,0,0,0,1&#125; &#125;; ColorMatrix colorMatrix = new ColorMatrix(matrixItems); ImageAttributes imageAtt = new ImageAttributes(); imageAtt.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap); Bitmap bmp = new Bitmap(image.Width, image.Height); Graphics g = Graphics.FromImage(bmp); g.DrawImage(image, new Rectangle(0, 0, image.Width, image.Height),0, 0, image.Width, image.Height, GraphicsUnit.Pixel, imageAtt); g.Dispose(); return bmp; &#125;]]></content>
+      <categories>
+        <category>c#</category>
+      </categories>
+      <tags>
+        <tag>c#</tag>
+        <tag>gdi，winform</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[c# 圆角矩形]]></title>
+    <url>%2F2019%2F10%2F27%2Fc-%E5%9C%86%E8%A7%92%E7%9F%A9%E5%BD%A2%2F</url>
+    <content type="text"><![CDATA[圆角矩形1234567891011121314151617181920212223242526272829303132333435363738394041private void Draw(Rectangle rectangle, Graphics g, int _radius, bool cusp, Color begin_color, Color end_color) &#123; int span = 2; //抗锯齿 g.SmoothingMode = SmoothingMode.AntiAlias; //渐变填充 LinearGradientBrush myLinearGradientBrush = new LinearGradientBrush(rectangle, begin_color, end_color, LinearGradientMode.Vertical); //画尖角 if (cusp) &#123; span = 10; PointF p1 = new PointF(rectangle.Width - 12, rectangle.Y -10); PointF p2 = new PointF(rectangle.Width - 12, rectangle.Y -30); PointF p3 = new PointF(rectangle.Width, rectangle.Y -20); PointF[] ptsArray = &#123; p1, p2, p3 &#125;; g.FillPolygon(myLinearGradientBrush, ptsArray); &#125; //填充 g.FillPath(myLinearGradientBrush, DrawRoundRect(rectangle.X, rectangle.Y, rectangle.Width - span, rectangle.Height - 1, _radius)); Pen shadowPen = new Pen(Color.LightGray); //加边框 g.DrawPath(shadowPen,DrawRoundRect(rectangle.X, rectangle.Y, rectangle.Width - span, rectangle.Height - 1, _radius)); &#125; public static GraphicsPath DrawRoundRect(int x, int y, int width, int height, int radius) &#123; //四边圆角 GraphicsPath gp = new GraphicsPath(); gp.AddArc(x, y, radius, radius, 180, 90); gp.AddArc(width - radius, y, radius, radius, 270, 90); gp.AddArc(width - radius, height - radius, radius, radius, 0, 90); gp.AddArc(x, height - radius, radius, radius, 90, 90); gp.CloseAllFigures(); return gp; &#125; private void pictureBox1_Paint(object sender, PaintEventArgs e) &#123; Draw(e.ClipRectangle, e.Graphics, 18, false, Color.FromArgb(101, 101, 101), Color.FromArgb(58, 58, 55)); base.OnPaint(e); Graphics g = e.Graphics; g.DrawString(&quot;mc&quot;, new Font(&quot;微软雅黑&quot;, 15, FontStyle.Bold), new SolidBrush(Color.White), new PointF(16, 14)); &#125;]]></content>
+      <categories>
+        <category>c#</category>
+      </categories>
+      <tags>
+        <tag>c#</tag>
+        <tag>winform</tag>
+        <tag>gdi+</tag>
+        <tag>矩形</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[c# 无边框拖动窗体]]></title>
+    <url>%2F2019%2F10%2F27%2Fc-%E6%97%A0%E8%BE%B9%E6%A1%86%E6%8B%96%E5%8A%A8%E7%AA%97%E4%BD%93%2F</url>
+    <content type="text"><![CDATA[窗体拖动12345678910111213141516171819202122232425262728293031323334353637383940414243bool beginMove; int currentXPosition; int currentYPosition; bool start=false; private void PictureBox1_MouseDown(object sender, MouseEventArgs e) &#123; if(e.Button==MouseButtons.Left) &#123; beginMove = true; currentXPosition = MousePosition.X;//鼠标的x坐标为当前窗体左上角x坐标 currentYPosition = MousePosition.Y;//鼠标的y坐标为当前窗体左上角y坐标 &#125; &#125; private void PictureBox1_MouseMove(object sender, MouseEventArgs e) &#123; if (beginMove) &#123; x += MousePosition.X - currentXPosition;//根据鼠标x坐标确定窗体的左边坐标x y += MousePosition.Y - currentYPosition;//根据鼠标的y坐标窗体的顶部，即Y坐标 currentXPosition = MousePosition.X; currentYPosition = MousePosition.Y; &#125; if(start==true) &#123; img = Image.FromFile(ofd.FileName);//重置 paint(); &#125; &#125; private void PictureBox1_MouseUp(object sender, MouseEventArgs e) &#123; if (e.Button == MouseButtons.Left) &#123; currentXPosition = 0; //设置初始状态 currentYPosition = 0; beginMove = false; &#125; &#125;]]></content>
+      <categories>
+        <category>c#</category>
+      </categories>
+      <tags>
+        <tag>c#</tag>
+        <tag>winform</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[java数据结构学习笔记]]></title>
+    <url>%2F2019%2F09%2F29%2Fjava%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[javascript]]></title>
+    <url>%2F2019%2F09%2F23%2Fjavascript%2F</url>
+    <content type="text"><![CDATA[javascript学习笔记js变量​ var声明变量 12var name=prompt(&quot;你的名字是：&quot;,&quot;&quot;)document.write(&quot;&lt;h1&gt;&quot;+name+&quot;&lt;/h1&gt;&quot;) prompt记录键盘输入，并赋值给变量。 js条件语句12345678910111213&lt;script&gt; var pwd =prompt(&quot;请输入你的密码&quot;,&quot;&quot;);//pwd是一个字符串 if (pwd==123456) &#123; //布尔函数 true false 1 0 真 假 document.write(&quot;登陆成功！&quot;); &#125; else &#123; document.write(&quot;登陆失败!&quot;); &#125; &lt;/script&gt; 用法与c# java类似。· while循环12345678910111213&lt;script&gt; var pwd = prompt(&quot;请输入你的密码&quot;,&quot;&quot;); if(pwd==&quot;123456&quot;) &#123; document.write(&quot;登陆成功&quot;); &#125; while(pwd !==&quot;123456&quot;) &#123; pwd=prompt(&quot;密码输入错误，请重新输入:&quot;,&quot;&quot;); &#125; &lt;/script&gt; for循环123456789101112&lt;script&gt; // var num=1; // while(num&lt;=10) // &#123; // document.write(num+&quot;&lt;br&gt;&quot;); // num=num+1; // &#125; for (var num=1;num&lt;=10;num++) &#123; document.write(num+&quot;&lt;br&gt;&quot;); &#125; &lt;/script&gt; ​ 大部分与c#相似，但定义变量更方便。]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>javascript web</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[c# 读写文件时文件正由另一进程使用]]></title>
     <url>%2F2019%2F09%2F11%2Fc-%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6%E6%97%B6%E6%96%87%E4%BB%B6%E6%AD%A3%E7%94%B1%E5%8F%A6%E4%B8%80%E8%BF%9B%E7%A8%8B%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[更改之前：12345678Sw = new StreamWriter(&quot;d:\\output.txt&quot;);FileStream fs = new FileStream(&quot;d:\\output.txt&quot;, FileMode.Open）fs.Position = fs.Length;//连续向文件写入数据零流 while ((str = inpipe.Read()) != null) &#123; Sw.Write(str+&quot;\n&quot;); &#125; Sw.Close(); 报错文件正由另一进程使用。 修改为：12345678Sw = new StreamWriter(&quot;d:\\output.txt&quot;); FileStream fs = new FileStream(&quot;d:\\output.txt&quot;, FileMode.Open, FileAccess.Read, FileShare.ReadWrite); fs.Position = fs.Length; while ((str = inpipe.Read()) != null) &#123; Sw.Write(str+&quot;\n&quot;); &#125; Sw.Close(); 解决 参考：https://blog.csdn.net/superhoy/article/details/7931234]]></content>
