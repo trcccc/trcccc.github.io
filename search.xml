@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[c# 获取天气信息]]></title>
+    <url>%2F2019%2F12%2F15%2Fc-%E8%8E%B7%E5%8F%96%E5%A4%A9%E6%B0%94%E4%BF%A1%E6%81%AF%2F</url>
+    <content type="text"><![CDATA[使用winform获取天气信息从网站http://www.weather.com.cn/data/sk/101010100.html上请求天气json数据 步骤引用 将图中两项引入 12using System.Web.Script.Serialization;using System.Net; 123456789101112131415161718192021222324252627public class Weather &#123; public Info weatherinfo; &#125; public class Info &#123; public string city;//城市 public string temp; //温度 public string WD; //风向 public string WS; //风力 public string SD; //相对湿度 public string time;//更新时间 &#125; private void Button3_Click(object sender, EventArgs e) &#123; HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(&quot;http://www.weather.com.cn/data/sk/101010100.html&quot;); request.Timeout = 5000; request.Method = &quot;GET&quot;; HttpWebResponse response = (HttpWebResponse)request.GetResponse(); StreamReader sr = new StreamReader(response.GetResponseStream()); string jsonstr = sr.ReadLine(); JavaScriptSerializer j = new JavaScriptSerializer(); Weather weather = new Weather(); weather = j.Deserialize&lt;Weather&gt;(jsonstr); &#125; 参考文章：https://blog.csdn.net/qq_26093511/article/details/51307339]]></content>
+      <categories>
+        <category>c#</category>
+      </categories>
+      <tags>
+        <tag>c#</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[c# 设置图片透明度]]></title>
     <url>%2F2019%2F10%2F27%2Fc-%E8%AE%BE%E7%BD%AE%E5%9B%BE%E7%89%87%E9%80%8F%E6%98%8E%E5%BA%A6%2F</url>
     <content type="text"><![CDATA[图片透明度1234567891011121314151617181920private Bitmap SetPictureAlpha(Image image, int alpha) &#123; //颜色矩阵 float[][] matrixItems = &#123; new float[]&#123;1,0,0,0,0&#125;, new float[]&#123;0,1,0,0,0&#125;, new float[]&#123;0,0,1,0,0&#125;, new float[]&#123;0,0,0,alpha/255f,0&#125;, new float[]&#123;0,0,0,0,1&#125; &#125;; ColorMatrix colorMatrix = new ColorMatrix(matrixItems); ImageAttributes imageAtt = new ImageAttributes(); imageAtt.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap); Bitmap bmp = new Bitmap(image.Width, image.Height); Graphics g = Graphics.FromImage(bmp); g.DrawImage(image, new Rectangle(0, 0, image.Width, image.Height),0, 0, image.Width, image.Height, GraphicsUnit.Pixel, imageAtt); g.Dispose(); return bmp; &#125;]]></content>
@@ -21,8 +32,8 @@
       </categories>
       <tags>
         <tag>c#</tag>
-        <tag>winform</tag>
         <tag>gdi+</tag>
+        <tag>winform</tag>
         <tag>矩形</tag>
       </tags>
   </entry>
